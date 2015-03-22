@@ -9,11 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class DrawerItemCustomAdapter extends ArrayAdapter<ObjectDrawerItem> {
+public class DrawerItemCustomAdapter extends ArrayAdapter<DrawerItem> {
 
 	Context mContext;
 	int layoutResourceId;
-	ObjectDrawerItem data[] = null;
+	DrawerItem data[] = null;
 
 	/*
 	 * @mContext - app context
@@ -22,7 +22,7 @@ public class DrawerItemCustomAdapter extends ArrayAdapter<ObjectDrawerItem> {
 	 * 
 	 * @data - the ListItem data
 	 */
-	public DrawerItemCustomAdapter(Context mContext, int layoutResourceId, ObjectDrawerItem[] data) {
+	public DrawerItemCustomAdapter(Context mContext, int layoutResourceId, DrawerItem[] data) {
 
 		super(mContext, layoutResourceId, data);
 		this.layoutResourceId = layoutResourceId;
@@ -31,11 +31,11 @@ public class DrawerItemCustomAdapter extends ArrayAdapter<ObjectDrawerItem> {
 	}
 
 	/*
-	 * @We'll overried the getView method which is called for every ListItem we
+	 * @We'll override the getView method which is called for every ListItem we
 	 * have.
 	 * 
 	 * @There are lots of different caching techniques for Android ListView to
-	 * achieve better performace especially if you are going to have a very long
+	 * achieve better performance especially if you are going to have a very long
 	 * ListView.
 	 */
 	@Override
@@ -57,7 +57,7 @@ public class DrawerItemCustomAdapter extends ArrayAdapter<ObjectDrawerItem> {
 		 * Set the data for the list item. You can also set tags here if you
 		 * want.
 		 */
-		ObjectDrawerItem folder = data[position];
+		DrawerItem folder = data[position];
 
 		
 		imageViewIcon.setImageResource(folder.icon);

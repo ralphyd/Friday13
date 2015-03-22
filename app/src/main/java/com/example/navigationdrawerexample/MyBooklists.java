@@ -6,15 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class ReadFragment extends Fragment {
+public class MyBooklists extends Fragment {
 
-	public ReadFragment() {
+	public MyBooklists() {
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.fragment_read, container, false);
+		View rootView = inflater.inflate(R.layout.fragment_create, container, false);
 
 		return rootView;
 	}

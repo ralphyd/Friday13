@@ -6,15 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class HelpFragment extends Fragment {
+public class ZipCodes extends Fragment {
 
-	public HelpFragment() {
+	public ZipCodes() {
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.fragment_help, container, false);
+		View rootView = inflater.inflate(R.layout.fragment_read, container, false);
 
 		return rootView;
 	}

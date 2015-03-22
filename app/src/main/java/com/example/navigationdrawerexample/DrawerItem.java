@@ -1,12 +1,12 @@
 package com.example.navigationdrawerexample;
 
-public class ObjectDrawerItem {
+public class DrawerItem {
 
 	public int icon;
 	public String name;
 
 	// Constructor.
-	public ObjectDrawerItem(int icon, String name) {
+	public DrawerItem(int icon, String name) {
 
 		this.icon = icon;
 		this.name = name;

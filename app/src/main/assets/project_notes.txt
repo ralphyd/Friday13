@@ -1,0 +1,104 @@
+BOOKLIST
+========
+
+book
+-----
+id
+isbn
+publisher
+author
+title
+type
+price
+year
+active
+
+booklist_header
+----------------
+id
+name
+user_owner
+type
+active
+
+booklist_detail
+-----------------
+booklist_detail_id
+booklist_header_id
+book_id
+active
+
+user
+-------
+id
+user_name
+email
+phone
+type
+active
+
+user_booklist_item
+---------------
+user_booklist_item_id
+user_id
+    booklist_header_id
+booklist_detail
+status
+active
+
+
+USER INTERFACE
+==============
+
+Login/Register
+	If new user suggest choice of either link to tutorial or register
+	Else show <login-screen>
+		login-screen with userName, password, linkForgottenPassword, btnLogin
+		If login successful,
+			show last viewed screen
+		Else
+			If login-attempts remain
+				re-show login screen
+			Else
+				exit app
+	Google template for login: https://developer.android.com/tools/projects/templates.html
+	Fix Android (Studio) Login Activity Template generated activity: http://stackoverflow.com/questions/22209046/fix-android-studio-login-activity-template-generated-activity
+	https://wowjava.wordpress.com/2011/01/16/login-application-for-android/  with servlet
+	http://stackoverflow.com/questions/15714446/android-log-in-sign-up-sample-project
+	http://www.compiletimeerror.com/2013/01/login-application-for-android.html#.VPmVQzTF_q0			servlet included
+	http://stackoverflow.com/questions/17500265/keep-me-logged-in-checkbox-android		keep me logged in via shared settings
+
+	Create Booklist
+	Join Booklist
+	Delete Booklist
+
+	My Booklists	= Create
+	ZipCodes		= Read
+	My Profile		= Help
+	------------------------------------------------
+					Search Booklists | +Booklist
+
+	You can:
+	-	Tap 'Search Booklists' to find a Booklist
+		you can either join or clone
+	-	Tap '+Booklist' to create a new Booklist
+	------------------------------------------------
+					Search Booklists | +Booklist
+	My Booklists
+	------------
+	6º EGB Escuelas Aguirre
+	2º Primaria Colegio Cervantes
+	------------------------------------------
+					+Book Hide Show All
+
+	Booklist: Manolo - 6º EGB
+	By Title | By State | Pending
+	---------
+	Lengua 6º				Found
+	Mates 6º
+	Ciencias Sociales 6º
+
+	used this: http://www.codeofaninja.com/2014/02/android-navigation-drawer-example.html
+	https://developer.android.com/design/patterns/navigation-drawer.html
+	http://developer.android.com/training/implementing-navigation/nav-drawer.html
+	http://innovatlas.org/wp-content/uploads/Navigation-Drawer-Betabeers.pdf

@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
     private CharSequence mDrawerTitle;
  
     // used to store app title
-    private CharSequence mTitle;
+    private CharSequence mAppTitle;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		// for proper titles
-		mTitle = mDrawerTitle = getTitle();
+		mAppTitle = mDrawerTitle = getTitle();
 		
 		// initialize properties
 		mNavigationDrawerItemTitles = getResources().getStringArray(R.array.navigation_drawer_items_array);
@@ -42,11 +42,14 @@ public class MainActivity extends Activity {
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         
         // list the drawer items
-        ObjectDrawerItem[] drawerItem = new ObjectDrawerItem[3];
+        DrawerItem[] drawerItem = new DrawerItem[3];
         
-        drawerItem[0] = new ObjectDrawerItem(R.drawable.ic_action_copy, "Create");
-        drawerItem[1] = new ObjectDrawerItem(R.drawable.ic_action_refresh, "Read");
-        drawerItem[2] = new ObjectDrawerItem(R.drawable.ic_action_share, "Help");
+        drawerItem[0] = new DrawerItem(R.drawable.ic_action_copy, "My Booklists");
+        drawerItem[1] = new DrawerItem(R.drawable.ic_action_refresh, "ZipCodes");
+        drawerItem[2] = new DrawerItem(R.drawable.ic_action_share, "My Profile");
+
+        // set a custom shadow that overlays the main content when the drawer opens
+        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, 1);
         
         // Pass the folderData to our ListView adapter
         DrawerItemCustomAdapter adapter = new DrawerItemCustomAdapter(this, R.layout.listview_item_row, drawerItem);
@@ -74,7 +77,7 @@ public class MainActivity extends Activity {
             /** Called when a drawer has settled in a completely closed state. */
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
-                getActionBar().setTitle(mTitle);
+                getActionBar().setTitle(mAppTitle);
             }
 
             /** Called when a drawer has settled in a completely open state. */
@@ -88,14 +91,19 @@ public class MainActivity extends Activity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         
         // enable ActionBar app icon to behave as action to toggle nav drawer
+        // shows drawer icon. drawer icon + app icon activate drawer
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
+        // don't know what this does:
+        // getActionBar().setHomeButtonEnabled(true);
         
         
         
         if (savedInstanceState == null) {
             // on first time display view for first nav item
         	selectItem(0);
+
+            // show drawer on first time
+            mDrawerLayout.openDrawer(mDrawerList);
         }
 	}
 
@@ -115,7 +123,7 @@ public class MainActivity extends Activity {
        if (mDrawerToggle.onOptionsItemSelected(item)) {
            return true;
        }
-       
+       // call superclass implementation if the menu item ID is not in my implementatio
        return super.onOptionsItemSelected(item);
 	}
 	
@@ -123,6 +131,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+
         // Sync the toggle state after onRestoreInstanceState has occurred.
         mDrawerToggle.syncState();
     }
@@ -146,13 +155,13 @@ public class MainActivity extends Activity {
         
         switch (position) {
         case 0:
-            fragment = new CreateFragment();
+            fragment = new MyBooklists();
             break;
         case 1:
-            fragment = new ReadFragment();
+            fragment = new ZipCodes();
             break;
         case 2:
-            fragment = new HelpFragment();
+            fragment = new MyProfile();
             break;
  
         default:
@@ -160,14 +169,14 @@ public class MainActivity extends Activity {
         }
         
         if (fragment != null) {
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
- 
             // update selected item and title, then close the drawer
             mDrawerList.setItemChecked(position, true);
             mDrawerList.setSelection(position);
             setTitle(mNavigationDrawerItemTitles[position]);
             mDrawerLayout.closeDrawer(mDrawerList);
+
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
             
         } else {
             // error in creating fragment
@@ -177,7 +186,7 @@ public class MainActivity extends Activity {
     
     @Override
     public void setTitle(CharSequence title) {
-        mTitle = title;
-        getActionBar().setTitle(mTitle);
+        mAppTitle = title;
+        getActionBar().setTitle(mAppTitle);
     }
 }
